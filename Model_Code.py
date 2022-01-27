@@ -1,29 +1,36 @@
 import requests
+import json
 
 class DataModel:
 
-    def __init__(self):
-        pass
+    def __init__(self,url,params):
+        
+        self.url_obj = self.get_Url_Information()
+        self.access = self.url_obj['API_KEY']
+        self.finance_url = url
+        self.params = params
 
-    def get_finance_data(self):
+    def get_Url_Information(self):
 
-        querystring = {
-            'symbols': 'AAPL,MSFT',
-            'interval': '1d',
-            'range': '1y'
-        }
+        load_JSON_files = open('Url_Information.JSON')
+        get_JSON_obj = json.load(load_JSON_files)
+
+        return get_JSON_obj
+
+
+    def get_Finance_Data(self):
+        
+        query_string = self.params
 
         headers = {
-            'x-api-key': '5aOPNl1LsP64L4C704qT8azZcshNA5Av7rezlD5a'
+            'x-api-key': self.access
         }
 
-        url = 'https://yfapi.net/v8/finance/spark'
+        url = self.finance_url
 
 
-        api_result = requests.get(url, headers = headers, params = querystring)
+        api_result = requests.get(url, headers = headers, params = query_string)
 
         api_response = api_result.json()
 
         return api_response
-
-
