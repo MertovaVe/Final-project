@@ -10,3 +10,6 @@ The stock prices are automatically updated every day, to update the value of ind
 3. if neccesary, install packages mentioned in the first cell (Jupyter Dash requires JupyterLab version 2.0 or above)
 4. run the notebook
 5. the dashboard will appear within the notebook
+
+## Note:
+The api is limited to 100 requests per day. In case of depletion, anyone can obtain free personal key from the Yahoo finance api and rewrite it in Url_Information.JSON
